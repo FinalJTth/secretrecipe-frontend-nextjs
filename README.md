@@ -1,1 +1,1 @@
-# secretrecipe-frontend-react
+# secretrecipe-frontend-nextjs
