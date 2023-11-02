@@ -1,6 +1,7 @@
 FROM node:20.9.0
 
 COPY ./src /src
+COPY ./public /public
 COPY ./next.config.js /
 COPY ./next-env.d.ts /
 COPY ./package.json /
