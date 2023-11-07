@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier 'src/**/*.{js,ts,jsx,tsx,mjs,cjs}' --write --ignore-unknown"
+    "prettier": "prettier '**/*.{js,ts,jsx,tsx,mjs,cjs}' --write --ignore-unknown"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.5",
