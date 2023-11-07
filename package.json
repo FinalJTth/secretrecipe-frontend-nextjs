@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier '**/*.{js,ts,jsx,tsx,mjs,cjs}' --write --ignore-unknown"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -14,6 +15,7 @@
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "axios": "^1.6.0",
     "framer-motion": "^10.16.4",
     "next": "14.0.1",
     "react": "^18",
@@ -25,6 +27,12 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "3.0.3",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,jsx,tsx,mjs,cjs}": "prettier --write --ignore-unknown"
   }
 }

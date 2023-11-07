@@ -1,0 +1,28 @@
+#scroller {
+    /* fill parent */
+    display: block;
+  
+    /* set to some transparent color */
+    border-color: rgba(0, 0, 0, 0.0);
+    /* here we make the color transition */
+    transition: border-color 0.75s linear;
+    /* make this element do the scrolling */
+    overflow: auto;
+  }
+  
+  #scroller:hover {
+    /* the color we want the scrollbar on hover */
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  #scroller::-webkit-scrollbar,
+  #scroller::-webkit-scrollbar-thumb,
+  #scroller::-webkit-scrollbar-corner {
+    /* add border to act as background-color */
+    border-right-style: inset;
+    /* sum viewport dimensions to guarantee border will fill scrollbar */
+    border-right-width: calc(100vw + 100vh);
+    /* inherit border-color to inherit transitions */
+    border-color: inherit;
+    width: 10px
+  }
