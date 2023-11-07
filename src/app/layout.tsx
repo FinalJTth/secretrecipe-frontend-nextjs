@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import { ColorModeScript } from "@chakra-ui/react";
+import Theme from "../themes";
 // import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ColorModeScript initialColorMode={Theme.config.initialColorMode} />
         <Providers>{children}</Providers>
       </body>
     </html>

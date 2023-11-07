@@ -63,14 +63,14 @@ const buttonStyle = {
     },
 
     solid: props => ({
-      bg: props.colorMode === "light" ? "teal.500" : "teal.600",
-      color: props.color || "white",
+      bg: props.colorMode === "light" ? "teal.500" : "teal.900",
+      color: props.color || "teal.100",
       rounded: props.rounded || { sm: "md" },
-      _hover: { bg: props.colorMode === "light" ? "teal.600" : "teal.700" },
+      _hover: { bg: props.colorMode === "light" ? "teal.600" : "teal.800" },
       _focus: {
         boxShadow:
           "0 0 1px 2px rgba(88, 144, 144, .75), 0 1px 1px rgba(0, 0, 0, .15)",
-        bg: "teal.600",
+        bg: props.colorMode === "light" ? "teal.600" : "teal.800",
         borderColor: "#bec3c9",
         borderWidth: "0px",
       },
@@ -104,8 +104,8 @@ const buttonStyle = {
     }),
 
     linkHeader: props => ({
-      color: "teal.100",
-      fontWeight: (props && props.fontWeight) || "semibold",
+      color: props.colorMode === "light" ? "teal.900" : "teal.100",
+      fontWeight: (props && props.fontWeight) || "bold",
       _hover: {},
       _focus: {
         boxShadow: "",

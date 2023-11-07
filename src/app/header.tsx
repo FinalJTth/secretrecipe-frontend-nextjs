@@ -5,6 +5,7 @@ import {
   Spacer,
   Text,
   useColorMode,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
 
 const Header = (): JSX.Element => {
@@ -12,27 +13,23 @@ const Header = (): JSX.Element => {
 
   return (
     <Flex
-      backgroundColor="teal.1000"
-      borderBottomWidth="0px"
-      borderColor="blue.600"
-      minW="100%"
-      h="50px"
-      minHeight="50px"
+      backgroundColor={mode("teal.100", "gray.900")}
       boxShadow="lg"
       position="sticky"
       alignItems="center"
+      minW="100%"
+      h="50px"
+      minH="50px"
       zIndex="1"
     >
       <Link href="/home">
-        <Button variant="unstyled" marginLeft="20px">
-          <Text fontWeight="bold">Home</Text>
+        <Button variant="linkHeader" size="lg">
+          <Text>Home</Text>
         </Button>
       </Link>
       <Spacer />
-      <Button variant="unstyled" marginRight="20px" onClick={toggleColorMode}>
-        <Text fontWeight="bold">
-          Toggle {colorMode === "light" ? "Dark" : "Light"}
-        </Text>
+      <Button variant="linkHeader" size="lg" onClick={toggleColorMode}>
+        <Text>Toggle {colorMode === "light" ? "Dark" : "Light"}</Text>
       </Button>
     </Flex>
   );

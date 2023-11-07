@@ -23,6 +23,6 @@ export const overrides = {
   useSystemColorMode: false,
 };
 
-const theme = extendTheme(overrides);
+const Theme = extendTheme(overrides);
 
-export default theme;
+export default Theme;
