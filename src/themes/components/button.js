@@ -65,7 +65,7 @@ const buttonStyle = {
     solid: props => ({
       bg: props.colorMode === "light" ? "teal.500" : "teal.900",
       color: props.color || "teal.100",
-      rounded: props.rounded || { sm: "sm" },
+      rounded: props.rounded || { sm: "md" },
       _hover: { bg: props.colorMode === "light" ? "teal.600" : "teal.800" },
       _focus: {
         boxShadow:
