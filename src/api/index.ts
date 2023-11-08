@@ -5,10 +5,10 @@ import axios, {
   AxiosInstance,
 } from "axios";
 
-const API = class API {
+class API {
   backend: AxiosInstance;
 
-  gatewayURL: string = "https://localhost:9000/";
+  gatewayURL: string = "https://localhost:8000/";
 
   header: Record<string, Record<string, string>> = {
     headers: {
@@ -41,35 +41,45 @@ const API = class API {
     );
   }
 
-  get(url: string) {
-    this.backend.get(url, this.header).then((response: Record<string, any>) => {
-      return response.data;
-    });
+  async get(url: string): Promise<Record<string, any>> {
+    return await this.backend
+      .get(url, this.header)
+      .then((response: AxiosResponse<Record<string, any>, any>) => {
+        return response.data;
+      });
   }
 
-  post(url: string, data: Record<string, any>) {
-    this.backend
+  async post(
+    url: string,
+    data: Record<string, any>,
+  ): Promise<Record<string, any>> {
+    return await this.backend
       .post(url, JSON.stringify(data), this.header)
-      .then((response: Record<string, any>) => {
+      .then((response: AxiosResponse<Record<string, any>, any>) => {
         return response.data;
       });
   }
 
-  put(url: string, data: Record<string, any>) {
-    this.backend
+  async put(
+    url: string,
+    data: Record<string, any>,
+  ): Promise<Record<string, any>> {
+    return await this.backend
       .put(url, JSON.stringify(data), this.header)
-      .then((response: Record<string, any>) => {
+      .then((response: AxiosResponse<Record<string, any>, any>) => {
         return response.data;
       });
   }
 
-  delete(url: string) {
-    this.backend
+  async delete(url: string): Promise<Record<string, any>> {
+    return await this.backend
       .delete(url, this.header)
-      .then((response: Record<string, any>) => {
+      .then((response: AxiosResponse<Record<string, any>, any>) => {
         return response.data;
       });
   }
-};
+}
 
-export default API;
+const api = new API();
+
+export default api;
