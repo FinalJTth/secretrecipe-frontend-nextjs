@@ -51,7 +51,7 @@ const recipeModel = types
   })
   .actions(self => {
     // API
-    const fetchRecipeByID = flow(function* getRecipeByID(
+    const fetchRecipeById = flow(function* fetchRecipeById(
       id: string,
     ): Generator<any, any, any> {
       return yield api
@@ -70,7 +70,7 @@ const recipeModel = types
         });
     });
 
-    const fetchPageRecipes = flow(function* getRecipeByID(
+    const fetchPageRecipes = flow(function* fetchPageRecipes(
       pageSize: number,
       currentPage: number,
       text?: string,
@@ -95,7 +95,7 @@ const recipeModel = types
         });
     });
 
-    const fetchAllRecipes = flow(function* getRecipeByID(
+    const fetchAllRecipes = flow(function* fetchAllRecipes(
       id: string,
     ): Generator<any, any, any> {
       return yield api.get(`/recipes/all`).then((res: Record<string, any>) => {
@@ -116,7 +116,11 @@ const recipeModel = types
       });
     });
 
-    return { fetchRecipeByID, fetchPageRecipes, fetchAllRecipes };
+    return {
+      fetchRecipeById,
+      fetchPageRecipes,
+      fetchAllRecipes,
+    };
   })
   .create({
     recipes: [],
