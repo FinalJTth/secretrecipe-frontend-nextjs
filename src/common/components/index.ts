@@ -2,3 +2,8 @@ export * from "./Box";
 export * from "./Stack";
 export * from "./Text";
 export * from "./Icons";
+export * from "./Card";
+export * from "./Flex";
+export * from "./Avatar";
+export * from "./Grid";
+export * from "./Image";

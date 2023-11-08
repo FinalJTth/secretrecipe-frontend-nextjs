@@ -1,20 +1,31 @@
 "use client";
 
-import { VStack } from "../../common/components";
+import { VStack, Flex, Text, StarIcon } from "../../common/components";
 import { ReviewSection, ReviewSectionProps } from "../ReviewSection";
 
 type ReviewSectionListProps = {
   reviews: ReviewSectionProps[];
+  avgRating: number;
+  totalReviews: number;
 };
 
 const ReviewSectionList = (props: ReviewSectionListProps) => {
-  const { reviews } = props;
+  const { reviews, avgRating, totalReviews } = props;
   return (
-    <VStack alignItems={"flex-start"} m={4}>
-      {reviews.map((review, index) => (
-        <ReviewSection key={index} {...review} />
-      ))}
-    </VStack>
+    <Flex flexDirection={"column"} m={4}>
+      <Flex alignItems={"center"} py={2}>
+        <StarIcon fontSize={"2xl"} color={"#b4690e"} mr={1} />
+        <Text
+          fontSize={"2xl"}
+          fontWeight={700}
+        >{`${avgRating} review rating | ${totalReviews}K ratings`}</Text>
+      </Flex>
+      <VStack alignItems={"flex-start"}>
+        {reviews.map((review, index) => (
+          <ReviewSection key={index} {...review} />
+        ))}
+      </VStack>
+    </Flex>
   );
 };
 

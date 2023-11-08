@@ -19,7 +19,7 @@ const StarRating = (props: StarRatingProps) => {
           <Box as="label" key={index}>
             <StarIcon
               boxSize={boxSize}
-              color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+              color={ratingValue <= rating ? "#b4690e" : "#e4e5e9"}
             />
           </Box>
         );
