@@ -8,7 +8,7 @@ import axios, {
 const API = class API {
   backend: AxiosInstance;
 
-  gatewayURL: string = "https://localhost:9000/";
+  gatewayURL: string = "http://localhost:8080/";
 
   header: Record<string, Record<string, string>> = {
     headers: {
@@ -41,10 +41,9 @@ const API = class API {
     );
   }
 
-  get(url: string) {
-    this.backend.get(url, this.header).then((response: Record<string, any>) => {
-      return response.data;
-    });
+  async get(url: string) {
+    const response = await this.backend.get(url, this.header);
+    return response.data;
   }
 
   post(url: string, data: Record<string, any>) {
