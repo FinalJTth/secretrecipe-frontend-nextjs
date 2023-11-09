@@ -29,7 +29,7 @@ const FoodButtonPanel = observer((): JSX.Element => {
       setWillRender(true);
     };
     fetch();
-  }, [page, recipe, recipe.recipes]);
+  }, [page, recipe]);
 
   if (willRender == false) {
     return <></>;

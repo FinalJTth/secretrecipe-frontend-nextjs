@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  chef:
+  frontend:
     image: finaljtth/secretrecipe-frontend:latest
     container_name: secretrecipe-frontend
     ports:
