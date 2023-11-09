@@ -1,7 +1,6 @@
 "use client";
 
 import { CacheProvider } from "@chakra-ui/next-js";
-import { PublicEnvProvider } from "next-runtime-env";
 import {
   Box,
   ChakraProvider,
@@ -14,17 +13,15 @@ import "./scroller.css";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <PublicEnvProvider>
-      <CacheProvider>
-        <ChakraProvider theme={theme}>
-          <Header />
-          <Box height="calc(100vh - 50px)" id="scroller">
-            <Box bg="inherit" minH="100%" py="12" px={{ sm: "6", lg: "8" }}>
-              {children}
-            </Box>
+    <CacheProvider>
+      <ChakraProvider theme={theme}>
+        <Header />
+        <Box height="calc(100vh - 50px)" id="scroller">
+          <Box bg="inherit" minH="100%" py="12" px={{ sm: "6", lg: "8" }}>
+            {children}
           </Box>
-        </ChakraProvider>
-      </CacheProvider>
-    </PublicEnvProvider>
+        </Box>
+      </ChakraProvider>
+    </CacheProvider>
   );
 }
