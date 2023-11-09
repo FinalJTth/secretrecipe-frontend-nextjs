@@ -1,12 +1,12 @@
 import { createContext, useContext } from "react";
-import chef from "./chef";
-import recipe from "./recipe";
-import review from "./review";
+import chefModel from "./chef";
+import recipeModel from "./recipe";
+import reviewModel from "./review";
 
 export const stores = {
-  chef,
-  recipe,
-  review,
+  chef: chefModel,
+  recipe: recipeModel,
+  review: reviewModel,
 };
 
 export const storesContext = createContext(stores);

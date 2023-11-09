@@ -25,6 +25,7 @@ const ChefMetaSection = (props: ChefMetaSectionProps) => {
     <Card
       variant={"unstyled"}
       rounded={"sm"}
+      boxShadow={"lg"}
       bg={mode("gray.200", "gray.700")}
       p={"16px"}
       mx={4}

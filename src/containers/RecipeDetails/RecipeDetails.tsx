@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Box } from "../../common/components";
 import API from "../../api";
@@ -19,42 +19,19 @@ type RecipeDetailsProps = {
 
 const RecipeDetails = observer(({ id }: RecipeDetailsProps) => {
   const { recipe } = useStores();
-  /*
-  const [recipeDetail, setRecipeDetail] = useState<RecipeDetail>();
+  const [willRender, setWillRender] = useState<Boolean>(false);
 
-  useEffect(() => {
-    const getRecipe = async () => {
-      const apiClient = new API();
-      const data = await apiClient.get(`/recipe/${id}`);
-      setRecipeDetail(data);
-    };
-    getRecipe();
-  }, [setRecipeDetail, id]);
-
-  const recipe = recipeDetail?.recipe;
-  const chefData = recipe?.chef ?? {};
-  const reviewsData = recipe?.reviews ?? [];
-  const {
-    name,
-    description,
-    ingredients = "",
-    step = [],
-    imageUrl,
-  } = recipe || {};
-  const recipeData = {
-    name,
-    description,
-    ingredients,
-    step,
-    imageUrl,
-  };
-  */
   useEffect(() => {
     const fetch = async () => {
       await recipe.fetchRecipeById(id);
+      setWillRender(true);
     };
     fetch();
   }, [id, recipe, recipe.currentRecipe]);
+
+  if (willRender == false) {
+    return;
+  }
 
   const reviews = recipe.currentRecipe.reviews;
   const chef = recipe.currentRecipe.chef;

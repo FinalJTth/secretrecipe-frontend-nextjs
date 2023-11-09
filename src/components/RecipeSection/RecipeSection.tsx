@@ -38,6 +38,7 @@ const RecipeSection = (props: RecipeSectionProps) => {
           alt="Food Image"
           objectFit={"scale-down"}
           h={"100%"}
+          boxShadow={"lg"}
         />
       </Flex>
       <Box bg={mode("gray.200", "gray.700")} p="16px" mt="50px" shadow="lg">
@@ -51,7 +52,7 @@ const RecipeSection = (props: RecipeSectionProps) => {
         bg={mode("gray.200", "gray.700")}
         p="16px"
         my={4}
-        shadow="lg"
+        boxShadow={"lg"}
       >
         <GridItem>
           <Text fontSize={"2xl"} fontWeight={800}>

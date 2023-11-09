@@ -15,7 +15,7 @@ const ReviewSection = (props: ReviewSectionProps) => {
   return (
     <VStack
       alignItems={"flex-start"}
-      boxShadow={"md"}
+      boxShadow={"lg"}
       spacing={1}
       w={"100%"}
       bg={mode("gray.200", "gray.700")}

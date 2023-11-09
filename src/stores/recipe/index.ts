@@ -28,16 +28,6 @@ export interface IRawRecipe {
 
 export interface IRawRecipeMST extends Instance<typeof rawRecipe> {}
 
-export interface IRawRecipe {
-  id: string;
-  description: string;
-  name: string;
-  step: Array<string>;
-  ingredients: string;
-  imageUrl: string;
-  chefId: number;
-}
-
 export const recipe = types.model("Recipe", {
   id: types.string,
   description: types.string,

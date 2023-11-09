@@ -10,5 +10,5 @@
   "singleQuote": false,
   "trailingComma": "all",
   "parser": "typescript",
-  "semi": true,
+  "semi": true
 }
