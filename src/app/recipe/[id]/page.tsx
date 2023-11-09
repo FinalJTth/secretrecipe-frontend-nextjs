@@ -1,14 +1,18 @@
 "use client";
+
 import { RecipeDetails } from "@/containers";
 import { Box } from "@/common/components";
 
-const recipeDetailsPage = ({ params }: { params: { id: string } }) => {
+const RecipeDetailsPage = ({ params }: { params: { id: string } }) => {
   return (
-    <Box>
+    <Box
+      maxW={{ sm: "2xl", md: "3xl", lg: "4xl" }}
+      mx={{ sm: "auto" }}
+      w={{ sm: "full" }}
+    >
       <RecipeDetails id={params.id} />
     </Box>
   );
 };
 
-export default recipeDetailsPage;
-export { recipeDetailsPage };
+export default RecipeDetailsPage;

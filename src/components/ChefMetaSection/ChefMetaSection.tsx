@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Box,
   Card,
   CardBody,
   CardHeader,
@@ -8,6 +9,8 @@ import {
   Avatar,
   Text,
 } from "../../common/components";
+
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
 type ChefMetaSectionProps = {
   name?: string;
@@ -19,31 +22,36 @@ type ChefMetaSectionProps = {
 const ChefMetaSection = (props: ChefMetaSectionProps) => {
   const { name, description, quote } = props;
   return (
-    <Card variant={"unstyled"} m={4} p={4}>
+    <Card
+      variant={"unstyled"}
+      rounded={"sm"}
+      bg={mode("gray.200", "gray.700")}
+      p={"16px"}
+      mx={4}
+    >
       <CardHeader>
-        <Text fontSize={"2xl"} fontWeight={800} mb={2}>
-          Chef
-        </Text>
-      </CardHeader>
-      <CardBody>
         <Text
           fontWeight={700}
-          fontSize={"lg"}
-          color={"#5624d0"}
+          fontSize={"2xl"}
+          color={"blue.500"}
           textDecoration={"underline"}
           cursor={"pointer"}
         >
           {name}
         </Text>
-        <Flex alignItems={"center"} my={3}>
+      </CardHeader>
+      <CardBody alignItems={"center"}>
+        <Flex my={3}>
           <Avatar
             name="Gordon Ramsay"
             src="https://media.makeameme.org/created/its-raw-you-354d16f399.jpg"
             size={"xl"}
           />
-          <Text fontWeight={600} fontSize={"xl"} ml={4}>{`"${quote}"`}</Text>
+          <Box ml={4}>
+            <Text fontWeight={600} fontSize={"xl"}>{`"${quote}"`}</Text>
+            <Text>{description}</Text>
+          </Box>
         </Flex>
-        <Text>{description}</Text>
       </CardBody>
     </Card>
   );

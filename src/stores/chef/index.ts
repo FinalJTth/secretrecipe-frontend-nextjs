@@ -14,7 +14,7 @@ export interface IChef {
 
 export interface IChefMST extends Instance<typeof chef> {}
 
-const chef = types.model("Chef", {
+export const chef = types.model("Chef", {
   id: types.string,
   name: types.string,
   description: types.string,
@@ -47,7 +47,7 @@ const chefModel = types
     const fetchChefById = flow(function* fetchChefById(
       id: string,
     ): Generator<any, any, any> {
-      return yield api.get(`/chefs/${id}`).then((res: Record<string, any>) => {
+      return yield api.get(`/chef/${id}`).then((res: Record<string, any>) => {
         self.setCurrentChef({
           id: res.id,
           name: res.name,
@@ -58,7 +58,7 @@ const chefModel = types
           quote: res.quote,
           experience: res.experience,
         });
-        return self.currentChef;
+        return res;
       });
     });
 

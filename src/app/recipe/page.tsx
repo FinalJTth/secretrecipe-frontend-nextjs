@@ -53,11 +53,7 @@ const TestPage = () => {
       "8 oz spaghetti, 1 lb ground beef, 1 onion, 2 cloves garlic, 2 cups tomato sauce, 1 tsp Italian herbs, 1/4 cup parmesan cheese",
     imageUrl: "https://example.com/spaghetti-bolognese.jpg",
   };
-  return (
-    <Box>
-      <RecipeDetails />
-    </Box>
-  );
+  return <Box></Box>;
 };
 
 export default TestPage;

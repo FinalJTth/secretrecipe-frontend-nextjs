@@ -1,4 +1,6 @@
 import { types, flow, cast, Instance, getSnapshot } from "mobx-state-tree";
+import { chef, IChef } from "../chef";
+import { review, IReview } from "../review";
 import api from "../../api";
 
 export interface IRecipe {
@@ -8,12 +10,46 @@ export interface IRecipe {
   step: Array<string>;
   ingredients: string;
   imageUrl: string;
-  chefId: number;
+  chef: IChef;
+  reviews: Array<IReview>;
 }
 
 export interface IRecipeMST extends Instance<typeof recipe> {}
 
-const recipe = types.model("Recipe", {
+export interface IRawRecipe {
+  id: string;
+  description: string;
+  name: string;
+  step: Array<string>;
+  ingredients: string;
+  imageUrl: string;
+  chefId: number;
+}
+
+export interface IRawRecipeMST extends Instance<typeof rawRecipe> {}
+
+export interface IRawRecipe {
+  id: string;
+  description: string;
+  name: string;
+  step: Array<string>;
+  ingredients: string;
+  imageUrl: string;
+  chefId: number;
+}
+
+export const recipe = types.model("Recipe", {
+  id: types.string,
+  description: types.string,
+  name: types.string,
+  step: types.array(types.string),
+  ingredients: types.string,
+  imageUrl: types.string,
+  chef: chef,
+  reviews: types.array(review),
+});
+
+export const rawRecipe = types.model("RawRecipe", {
   id: types.string,
   description: types.string,
   name: types.string,
@@ -25,12 +61,12 @@ const recipe = types.model("Recipe", {
 
 const recipeModel = types
   .model("RecipeModel", {
-    recipes: types.array(recipe),
+    recipes: types.array(rawRecipe),
     currentRecipe: recipe,
   })
   .actions(self => {
     // Getter
-    const getRecipes = (): Array<IRecipeMST> => {
+    const getRecipes = (): Array<IRawRecipeMST> => {
       return self.recipes;
     };
 
@@ -39,7 +75,7 @@ const recipeModel = types
     };
 
     // Setter
-    const setRecipes = (recipes: Array<IRecipe>) => {
+    const setRecipes = (recipes: Array<IRawRecipe>) => {
       self.recipes = cast(recipes);
     };
 
@@ -54,20 +90,20 @@ const recipeModel = types
     const fetchRecipeById = flow(function* fetchRecipeById(
       id: string,
     ): Generator<any, any, any> {
-      return yield api
-        .get(`/recipes/${id}`)
-        .then((res: Record<string, any>) => {
-          self.setCurrentRecipe({
-            id: res.id,
-            description: res.description,
-            name: res.name,
-            step: res.step,
-            ingredients: res.ingredients,
-            imageUrl: res.imageUrl,
-            chefId: res.chefId,
-          });
-          return self.currentRecipe;
+      return yield api.get(`/recipe/${id}`).then((res: Record<string, any>) => {
+        const recipe = res.recipe;
+        self.setCurrentRecipe({
+          id: recipe.id,
+          description: recipe.description,
+          name: recipe.name,
+          step: recipe.step,
+          ingredients: recipe.ingredients,
+          imageUrl: recipe.imageUrl,
+          chef: recipe.chef,
+          reviews: recipe.reviews,
         });
+        return res;
+      });
     });
 
     const fetchPageRecipes = flow(function* fetchPageRecipes(
@@ -76,10 +112,15 @@ const recipeModel = types
       text?: string,
     ): Generator<any, any, any> {
       return yield api
-        .get(`/recipes?${pageSize}?${currentPage}${text ? `?${text}` : ``}`)
+        .get(
+          `/recipes?page_size=${pageSize}&current_page=${currentPage}${
+            text ? `&text=${text}` : ``
+          }`,
+        )
         .then((res: Record<string, any>) => {
+          const recipes = res.recipes;
           self.setRecipes(
-            res.map((recipe: Record<string, any>) => {
+            recipes.map((recipe: Record<string, any>) => {
               return {
                 id: recipe.id,
                 description: recipe.description,
@@ -91,7 +132,7 @@ const recipeModel = types
               };
             }),
           );
-          return self.getRecipes();
+          return res;
         });
     });
 
@@ -112,7 +153,7 @@ const recipeModel = types
             };
           }),
         );
-        return self.getRecipes();
+        return res;
       });
     });
 
@@ -131,7 +172,17 @@ const recipeModel = types
       step: [],
       ingredients: "",
       imageUrl: "",
-      chefId: 0,
+      chef: {
+        id: "",
+        name: "",
+        description: "",
+        imageUrl: "",
+        phoneNumber: "",
+        email: "",
+        quote: "",
+        experience: "",
+      },
+      reviews: [],
     },
   });
 

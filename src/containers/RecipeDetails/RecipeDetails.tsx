@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
 import { Box } from "../../common/components";
-import API from "../../api/api.v1";
+import API from "../../api";
 import {
   RecipeSection,
   ChefMetaSection,
@@ -10,12 +11,15 @@ import {
   RecipeSectionProps,
 } from "../../components";
 import { RecipeDetail, Review } from "@/utils/types";
+import { useStores } from "../../stores";
 
 type RecipeDetailsProps = {
   id: string;
 };
 
-const RecipeDetails = ({ id }: RecipeDetailsProps) => {
+const RecipeDetails = observer(({ id }: RecipeDetailsProps) => {
+  const { recipe } = useStores();
+  /*
   const [recipeDetail, setRecipeDetail] = useState<RecipeDetail>();
 
   useEffect(() => {
@@ -44,6 +48,16 @@ const RecipeDetails = ({ id }: RecipeDetailsProps) => {
     step,
     imageUrl,
   };
+  */
+  useEffect(() => {
+    const fetch = async () => {
+      await recipe.fetchRecipeById(id);
+    };
+    fetch();
+  }, [id, recipe, recipe.currentRecipe]);
+
+  const reviews = recipe.currentRecipe.reviews;
+  const chef = recipe.currentRecipe.chef;
 
   const calAvgRating = (reviews: Review[]) => {
     const totalRatings = reviews.reduce(
@@ -54,19 +68,19 @@ const RecipeDetails = ({ id }: RecipeDetailsProps) => {
     return Number(averageRating.toFixed(1));
   };
 
-  const avgRating = calAvgRating(reviewsData);
-  const totalReviews = reviewsData.length;
+  const avgRating = calAvgRating(reviews);
+  const totalReviews = reviews.length;
   return (
     <Box>
-      <RecipeSection {...recipeData} />
-      <ChefMetaSection {...chefData} />
+      <RecipeSection {...recipe.currentRecipe} />
+      <ChefMetaSection {...chef} />
       <ReviewSectionList
-        reviews={reviewsData}
+        reviews={reviews}
         avgRating={avgRating}
         totalReviews={totalReviews}
       />
     </Box>
   );
-};
+});
 
 export { RecipeDetails };

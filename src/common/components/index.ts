@@ -7,3 +7,4 @@ export * from "./Flex";
 export * from "./Avatar";
 export * from "./Grid";
 export * from "./Image";
+export * from "./Heading";

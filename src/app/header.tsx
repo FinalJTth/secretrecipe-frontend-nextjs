@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Button,
   Flex,
@@ -13,16 +15,13 @@ const Header = (): JSX.Element => {
 
   return (
     <Flex
-      backgroundColor={mode("teal.100", "gray.900")}
+      backgroundColor={mode("gray.200", "gray.900")}
       boxShadow="lg"
-      position="sticky"
-      alignItems="center"
       minW="100%"
       h="50px"
       minH="50px"
-      zIndex="1"
     >
-      <Link href="/home">
+      <Link href="/">
         <Button variant="linkHeader" size="lg">
           <Text>Home</Text>
         </Button>

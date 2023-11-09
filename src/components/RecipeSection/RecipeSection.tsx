@@ -6,8 +6,11 @@ import {
   Box,
   Grid,
   GridItem,
+  Heading,
   Image,
 } from "../../common/components";
+
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
 type RecipeSectionProps = {
   description?: string;
@@ -18,36 +21,41 @@ type RecipeSectionProps = {
 };
 
 const RecipeSection = (props: RecipeSectionProps) => {
-  const { description, name, step = [], ingredients = "" } = props;
+  const { description, name, step = [], ingredients = "", imageUrl } = props;
   const ingredientList = ingredients.split(",");
   // console.log(ingredientList);
 
   return (
-    <Flex flexDirection={"column"} justifyContent={"center"} mx={4} px={4}>
+    <Flex flexDirection={"column"} mx={4}>
       <Flex justify={"center"}>
-        <Text fontSize={"3xl"} fontWeight={800}>
+        <Heading size="3xl" fontWeight="extrabold">
           {name}
-        </Text>
+        </Heading>
       </Flex>
-      <Box h={"400px"}>
+      <Flex justify={"center"} h={"400px"} mt="40px">
         <Image
           src="https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg"
           alt="Food Image"
           objectFit={"scale-down"}
-          w={"100%"}
           h={"100%"}
         />
-      </Box>
-      <Box>
-        <Text fontSize={"xl"} fontWeight={700}>
-          Description:{" "}
+      </Flex>
+      <Box bg={mode("gray.200", "gray.700")} p="16px" mt="50px" shadow="lg">
+        <Text fontSize={"2xl"} fontWeight={800}>
+          Description
         </Text>
         <Text ml={4}>{description}</Text>
       </Box>
-      <Grid templateColumns={"repeat(2, 1fr)"} my={4}>
+      <Grid
+        templateColumns={"repeat(2, 1fr)"}
+        bg={mode("gray.200", "gray.700")}
+        p="16px"
+        my={4}
+        shadow="lg"
+      >
         <GridItem>
-          <Text fontSize={"xl"} fontWeight={700}>
-            Ingredients:{" "}
+          <Text fontSize={"2xl"} fontWeight={800}>
+            Ingredients
           </Text>
           {ingredientList.map((ingredient, index) => (
             <Text key={index} ml={4}>
@@ -57,8 +65,8 @@ const RecipeSection = (props: RecipeSectionProps) => {
         </GridItem>
         <GridItem>
           <Flex flexDirection={"column"}>
-            <Text fontSize={"xl"} fontWeight={700}>
-              Steps:{" "}
+            <Text fontSize={"2xl"} fontWeight={800}>
+              Steps
             </Text>
             {step.map((step, index) => (
               <Text key={index} ml={4} my={1}>{`${index + 1}. ${step}`}</Text>

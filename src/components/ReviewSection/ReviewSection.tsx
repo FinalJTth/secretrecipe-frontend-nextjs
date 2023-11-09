@@ -2,6 +2,7 @@
 
 import { StarRating } from "../StarRating";
 import { VStack, Text } from "../../common/components";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
 type ReviewSectionProps = {
   rating: number;
@@ -14,10 +15,11 @@ const ReviewSection = (props: ReviewSectionProps) => {
   return (
     <VStack
       alignItems={"flex-start"}
-      p={4}
       boxShadow={"md"}
       spacing={1}
       w={"100%"}
+      bg={mode("gray.200", "gray.700")}
+      p={"10px"}
     >
       <Text fontSize={"lg"} fontWeight={600}>
         {reviewerName}

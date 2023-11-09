@@ -1,5 +1,6 @@
 // theme.js
 import { extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 // Global style overrides
 import globalStyles from "./globalstyle";
 // Foundational style overrides
@@ -9,9 +10,11 @@ import Button from "./components/button";
 import Input from "./components/input";
 
 export const overrides = {
+  /*
   styles: {
-    globalStyles,
+    global: globalStyles.global,
   },
+  */
   // borders,
   // Other foundational style overrides go here
   components: {
@@ -19,10 +22,12 @@ export const overrides = {
     Input,
     // Other components go here
   },
-  initialColorMode: "dark",
-  useSystemColorMode: false,
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  },
 };
 
-const Theme = extendTheme(overrides);
+const theme = extendTheme(overrides);
 
-export default Theme;
+export default theme;

@@ -3,7 +3,6 @@ import api from "../../api";
 
 export interface IReview {
   id: string;
-  recipeId: string;
   description: string;
   reviewerName: string;
   rating: number;
@@ -11,9 +10,8 @@ export interface IReview {
 
 export interface IReviewMST extends Instance<typeof review> {}
 
-const review = types.model("Review", {
+export const review = types.model("Review", {
   id: types.string,
-  recipeId: types.string,
   description: types.string,
   reviewerName: types.string,
   rating: types.number,
@@ -47,14 +45,13 @@ const reviewModel = types
             res.map((review: Record<string, any>) => {
               return {
                 id: review.id,
-                recipeId: review.recipeId,
                 description: review.description,
                 reviewerName: review.reviewerName,
                 rating: review.rating,
               };
             }),
           );
-          return self.getReviews();
+          return res;
         });
     });
 
