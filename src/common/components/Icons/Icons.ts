@@ -1,3 +1,3 @@
-import { StarIcon, PhoneIcon, EmailIcon } from "@chakra-ui/icons";
+import { StarIcon } from "@chakra-ui/icons";
 
-export { StarIcon, PhoneIcon, EmailIcon };
+export { StarIcon };
