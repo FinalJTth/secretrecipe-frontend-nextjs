@@ -1,7 +1,7 @@
 "use client";
 
-import { RecipeDetails } from "@/containers";
-import { Box } from "@/common/components";
+import { RecipeDetails } from "../../../containers";
+import { Box } from "../../../common/components";
 
 const RecipeDetailsPage = ({ params }: { params: { id: string } }) => {
   return (

@@ -27,7 +27,7 @@ const RecipeDetails = observer(({ id }: RecipeDetailsProps) => {
       setWillRender(true);
     };
     fetch();
-  }, [id, recipe, recipe.currentRecipe]);
+  }, [id, recipe]);
 
   if (willRender == false) {
     return;
