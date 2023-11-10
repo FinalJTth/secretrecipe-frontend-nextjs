@@ -11,4 +11,3 @@ const chefDetailsPage = ({ params }: { params: { id: string } }) => {
 };
 
 export default chefDetailsPage;
-export { chefDetailsPage };
