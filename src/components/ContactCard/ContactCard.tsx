@@ -15,7 +15,6 @@ const ContactCard = (props: ContactCardProps) => {
       alignItems={"center"}
       boxShadow={"lg"}
       bg={mode("gray.200", "gray.700")}
-      mt={3}
       py={2}
       px={4}
       w={"100%"}

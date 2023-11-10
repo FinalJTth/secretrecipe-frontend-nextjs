@@ -14,12 +14,8 @@ const ChefDetails = observer(({ chefId }: ChefDetailsProps) => {
 
   useEffect(() => {
     const fetch = async () => {
-      try {
-        await chef.fetchChefById(chefId);
-        setWillRender(true);
-      } catch (error) {
-        console.error("Error fetching chef details:", error);
-      }
+      await chef.fetchChefById(chefId);
+      setWillRender(true);
     };
     fetch();
   }, [chef, chefId, chef.currentChef]);
@@ -29,7 +25,6 @@ const ChefDetails = observer(({ chefId }: ChefDetailsProps) => {
   }
 
   const { id, ...chefData } = chef.currentChef;
-  console.log(chefData);
 
   return <ChefDetail {...chefData} />;
 });

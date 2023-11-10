@@ -1,5 +1,12 @@
 "use client";
-import { Avatar, Flex, PhoneIcon, EmailIcon } from "../../common/components";
+import {
+  Avatar,
+  Flex,
+  HStack,
+  PhoneIcon,
+  EmailIcon,
+  VStack,
+} from "../../common/components";
 import { ContactCard } from "../ContactCard";
 import { ChefInformationCard } from "../ChefInformationCard";
 
@@ -16,18 +23,27 @@ type ChefDetailProps = {
 const ChefDetail = (props: ChefDetailProps) => {
   const { phoneNumber, email, imageUrl = "", ...chefData } = props;
   return (
-    <Flex alignItems={"flex-start"} justifyContent={"space-around"} my={3}>
-      <ChefInformationCard {...chefData} />
-      <Flex flexDirection={"column"} alignItems={"center"}>
+    <HStack
+      spacing={"10px"}
+      my={4}
+      border={"1px"}
+      borderColor={"black"}
+      alignItems={"start"}
+      justifyContent={"center"}
+      w={"100%"}
+    >
+      <VStack spacing={"10px"}>
         <Avatar
           name="Gordon Ramsay"
           src="https://media.makeameme.org/created/its-raw-you-354d16f399.jpg"
           boxSize={"200px"}
+          mb={"6px"}
         />
         <ContactCard icon={<PhoneIcon />} contact={phoneNumber} />
         <ContactCard icon={<EmailIcon />} contact={email} />
-      </Flex>
-    </Flex>
+      </VStack>
+      <ChefInformationCard {...chefData} />
+    </HStack>
   );
 };
 

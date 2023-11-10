@@ -49,14 +49,14 @@ const chefModel = types
     ): Generator<any, any, any> {
       return yield api.get(`/chef/${id}`).then((res: Record<string, any>) => {
         self.setCurrentChef({
-          id: res.id,
-          name: res.name,
-          description: res.description,
-          imageUrl: res.imageUrl,
-          phoneNumber: res.phoneNumber,
-          email: res.email,
-          quote: res.quote,
-          experience: res.experience,
+          id: res.chef.id,
+          name: res.chef.name,
+          description: res.chef.description,
+          imageUrl: res.chef.imageUrl,
+          phoneNumber: res.chef.phoneNumber,
+          email: res.chef.email,
+          quote: res.chef.quote,
+          experience: res.chef.experience,
         });
         return res;
       });

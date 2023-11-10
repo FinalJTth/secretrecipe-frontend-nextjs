@@ -1,12 +1,12 @@
 "use client";
 import { ChefDetails } from "@/containers";
-import { Box } from "@/common/components";
+import { Flex, Box } from "@/common/components";
 
 const chefDetailsPage = ({ params }: { params: { id: string } }) => {
   return (
-    <Box>
+    <Flex maxW={{ sm: "3xl" }} mx={{ sm: "auto" }} w={{ sm: "full" }}>
       <ChefDetails chefId={params.id} />
-    </Box>
+    </Flex>
   );
 };
 
