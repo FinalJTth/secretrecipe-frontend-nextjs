@@ -26,8 +26,6 @@ const ChefDetail = (props: ChefDetailProps) => {
     <HStack
       spacing={"10px"}
       my={4}
-      border={"1px"}
-      borderColor={"black"}
       alignItems={"start"}
       justifyContent={"center"}
       w={"100%"}
