@@ -9,10 +9,11 @@ import {
   Avatar,
   Text,
 } from "../../common/components";
-
+import Link from "next/link";
 import { useColorModeValue as mode } from "@chakra-ui/react";
 
 type ChefMetaSectionProps = {
+  id?: string;
   name?: string;
   description?: string;
   quote?: string;
@@ -20,7 +21,7 @@ type ChefMetaSectionProps = {
 };
 
 const ChefMetaSection = (props: ChefMetaSectionProps) => {
-  const { name, description, quote } = props;
+  const { name, description, quote, id = "" } = props;
   return (
     <Card
       variant={"unstyled"}
@@ -31,18 +32,20 @@ const ChefMetaSection = (props: ChefMetaSectionProps) => {
       mx={4}
     >
       <CardHeader>
-        <Text
-          fontWeight={700}
-          fontSize={"2xl"}
-          color={"blue.500"}
-          textDecoration={"underline"}
-          cursor={"pointer"}
-        >
-          {name}
-        </Text>
+        <Link href={`/chef/${id}`}>
+          <Text
+            fontWeight={700}
+            fontSize={"2xl"}
+            color={"blue.500"}
+            textDecoration={"underline"}
+            cursor={"pointer"}
+          >
+            {name}
+          </Text>
+        </Link>
       </CardHeader>
-      <CardBody alignItems={"center"}>
-        <Flex my={3}>
+      <CardBody>
+        <Flex my={3} alignItems={"center"}>
           <Avatar
             name="Gordon Ramsay"
             src="https://media.makeameme.org/created/its-raw-you-354d16f399.jpg"
