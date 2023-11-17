@@ -8,7 +8,7 @@ import axios, {
 class API {
   backend: AxiosInstance;
 
-  gatewayURL: string = "http://host.docker.internal:8080/";
+  gatewayURL: string = "http://gateway-service:8080/";
 
   header: Record<string, Record<string, string>> = {
     headers: {
