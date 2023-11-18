@@ -3,6 +3,8 @@ FROM node:20.9.0-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
+ENV COREPACK_ENABLE_NETWORK="0"
 COPY ./src /app/src
 COPY ./public /app/public
 COPY ./next.config.js /app/
